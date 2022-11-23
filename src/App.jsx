@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import Home from "./components/home";
 import About from "./components/about";
 import Singup from "./components/singup";
+import SignIn from "./components/singin";
 //  npm i react-router-dom
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="sign-up" element={<Singup />} />
+          <Route path="sign-in" element={<SignIn />} />
         </Routes>
       </main>
 

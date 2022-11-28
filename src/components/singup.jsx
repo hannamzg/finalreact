@@ -1,8 +1,18 @@
 import { useFormik } from "formik";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
+import Joi from "joi";
+import formikValidateUsingJoi from "../utils/formikValidateUsingJoi";
+import { createUser } from "../services/usersService";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 // npm install formik
+// npm i joi
 const SignUp = () => {
+
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
@@ -10,19 +20,22 @@ const SignUp = () => {
       password: "",
       name: "",
     },
-    validate(values) {
-      const errors = {};
 
-      if (values.email === "") {
-        errors.email = "email is required";
-      } else if (!/[a-zA-Z0-9]+@[a-zA-Z0-9]+\.com/g.test(values.email)) {
-        errors.email = "please provide a valid email address";
+    validate: formikValidateUsingJoi({
+      name: Joi.string().min(2).max(255).required(),
+      email: Joi.string().min(6).max(255).required().email({tlds:{allow:false}}),
+      password: Joi.string().min(6).max(1024).required(),
+    }),
+
+    async  onSubmit(values) {
+      try {
+        await createUser({ ...values, biz: false });
+        navigate("/sign-in");
+      } catch ({ response }) {
+        if (response && response.status === 400) {
+          setError(response.data);
+        }
       }
-
-      return errors;
-    },
-    onSubmit(values) {
-      console.log("submitted", values);
     },
   });
 
@@ -34,7 +47,8 @@ const SignUp = () => {
       />
 
       <form onSubmit={form.handleSubmit} noValidate autoComplete="off">
-        <div className="alert alert-danger">Error</div>
+      {error && <div className="alert alert-danger">{error}</div>}
+
 
         <Input
           type="email"

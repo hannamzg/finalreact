@@ -3,15 +3,19 @@ import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
 import Joi from "joi";
 import formikValidateUsingJoi from "../utils/formikValidateUsingJoi";
-import { createUser } from "../services/usersService";
-import { useNavigate } from "react-router-dom";
+/* import { createUser } from "./services/userService";
+ */import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../context/auth.context";
 // npm install formik
 // npm i joi
-const SignUp = () => {
 
+
+const SignUp = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  
+  const {createUser} =useAuth();
 
   const form = useFormik({
     validateOnMount: true,

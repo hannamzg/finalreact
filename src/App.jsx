@@ -5,29 +5,31 @@ import Home from "./components/home";
 import About from "./components/about";
 import Singup from "./components/singup";
 import SignIn from "./components/singin";
-//  npm i react-router-dom
-
-
 import { Route, Routes } from "react-router-dom";
+
+
+//  npm i react-router-dom
 
 function App() {
   return (
-    <div className="app d-flex flex-column min-vh-100">
-      <header>
-        <Navbar />
-      </header>
 
-      <main className="flex-fill container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="sign-up" element={<Singup />} />
-          <Route path="sign-in" element={<SignIn />} />
-        </Routes>
-      </main>
+      <div className="app d-flex flex-column min-vh-100">
+        <header>
+          <Navbar />
+        </header>
 
-      <Footer />
-    </div>
+        <main className="flex-fill container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="sign-up" element={<Singup />} />
+            <Route path="sign-in" element={<SignIn />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div> 
+
+    
   );
 }
 

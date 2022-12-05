@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
-
+import { useAuth } from "../context/auth.context";
 /* className={({ isActive }) =>
 isActive ? "nav-link activeStyle" : undefined
 }  */
 const Navbar = () => {
+
+  const {user} = useAuth();
+
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-sm">
       <div className="container-fluid">
@@ -29,28 +32,46 @@ const Navbar = () => {
                 About
               </NavLink>
             </li>
-            <li className="nav-item">
+            {user?.biz && ( <li className="nav-item">
               <NavLink  to="my-cards" className={({ isActive }) =>
                 isActive ? "nav-link activeStyle" :"nav-link"
                 }>
                 My Cards
               </NavLink>
-            </li>
+            </li>)} 
           </ul>
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
-            <li className="nav-item">
-              <NavLink to="sign-in" className={({ isActive }) =>
+           {user ?(
+           <li className="nav-item">
+              <NavLink to="sign-out" className={({ isActive }) =>
                 isActive ? "nav-link activeStyle" :"nav-link"
                 }>
-                Sign In
+                Sign out
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="sign-up" className="nav-link">
-                Sign Up
-              </NavLink>
-            </li>
+            ):(
+              <> 
+                <li className="nav-item">
+                  <NavLink to="sign-in" className={({ isActive }) =>
+                    isActive ? "nav-link activeStyle" :"nav-link"
+                    }>
+                    Sign In
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="sign-up" className="nav-link">
+                    Sign Up
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="sign-up-biz" className="nav-link">
+                    Sign Up business
+                  </NavLink>
+                </li>
+              </>
+            )} 
+            
           </ul>
         </div>
       </div>

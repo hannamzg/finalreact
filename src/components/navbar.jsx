@@ -6,6 +6,7 @@ isActive ? "nav-link activeStyle" : undefined
 const Navbar = () => {
 
   const {user} = useAuth();
+  const {logout} = useAuth();
 
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light shadow-sm">
@@ -43,10 +44,8 @@ const Navbar = () => {
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
            {user ?(
-           <li className="nav-item">
-              <NavLink to="sign-out" className={({ isActive }) =>
-                isActive ? "nav-link activeStyle" :"nav-link"
-                }>
+           <li className="nav-item" onClick={()=> logout()}>
+              <NavLink to="/" className={"nav-link"}>
                 Sign out
               </NavLink>
             </li>

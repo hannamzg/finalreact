@@ -7,6 +7,8 @@ import formikValidateUsingJoi from "../utils/formikValidateUsingJoi";
  */import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../context/auth.context";
+import {Navigate} from "react-router-dom"
+import { toast } from "react-toastify";
 // npm install formik
 // npm i joi
 
@@ -15,7 +17,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   
-  const {createUser} =useAuth();
+  const {createUser,user} =useAuth();
 
   const form = useFormik({
     validateOnMount: true,
@@ -35,6 +37,7 @@ const SignUp = () => {
       try {
         await createUser({ ...values, biz: false });
         navigate("/sign-in");
+        toast("your account is ready")
       } catch ({ response }) {
         if (response && response.status === 400) {
           setError(response.data);
@@ -43,11 +46,15 @@ const SignUp = () => {
     },
   });
 
+  if(user){
+    return <Navigate to="/"/>
+  }
+  
   return (
     <>
       <PageHeader
         title="Sign Up with Real App"
-        description="Open a new account, it is free you yammani!"
+        description="Open a new account, it is freeeeeee"
       />
 
       <form onSubmit={form.handleSubmit} noValidate autoComplete="off">

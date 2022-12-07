@@ -18,7 +18,6 @@ export function createUser(user) {
 
 export async function loginUser(credentials){
   const{ data} = await httpService.post("/auth",credentials);
-
   localStorage.setItem(TOKEN_KEY,data.token);
   setTokenHeader();
 }

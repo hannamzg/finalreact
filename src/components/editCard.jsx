@@ -4,7 +4,6 @@ import PageHeader from "./common/pageHeader";
 import Joi from "joi";
 import formikValidateUsingJoi from "../utils/formikValidateUsingJoi";
 import { useState } from "react";
-import { createCard } from "../components/createCard";
 import { updateCard } from "./services/cardService";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";

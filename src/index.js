@@ -9,7 +9,8 @@ import { AuthProvider } from "./context/auth.context";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
+//  npm install gh-pages --save-div  for githup
+//npm run deploy
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 

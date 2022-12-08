@@ -23,6 +23,7 @@ export function updateCard(id, card) {
 const cardsService = {
   createCard,
   getAll,
+  getCard,
   deleteCard,
   updateCard,
 };

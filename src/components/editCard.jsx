@@ -7,7 +7,7 @@ import { useState } from "react";
 import { updateCard } from "./services/cardService";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import { useMyCards } from "../hooks/useMyCards";
+import { useCard } from "../hooks/useCard";
 import { useEffect } from "react";
 
 const EditCard = () => {
@@ -15,7 +15,7 @@ const EditCard = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const card = useMyCards(id);
+  const card = useCard(id);
 
   const form = useFormik({
     validateOnMount: true,

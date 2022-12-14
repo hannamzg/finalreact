@@ -36,4 +36,4 @@ const httpService = {
   axios,
 };
 
-export default httpService;
+export default httpService; 
